@@ -45,7 +45,7 @@ namespace CellAutomata {
                     int randNum = rand.Next(0, 13);
                     bool isAlive = false;
 
-                    if (randNum <= 4) {
+                    if (randNum <= 6) {
                         isAlive = true;
                     } 
 

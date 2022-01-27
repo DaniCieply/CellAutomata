@@ -8,6 +8,7 @@ namespace CellAutomata {
         Vector2f pos;
         Vector2f size;
         public bool isAlive;
+        public bool nextAliveState; 
 
         public Cell(Vector2f position, Vector2f size, bool isAlive) {
             this.pos = position;

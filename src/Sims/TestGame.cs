@@ -32,16 +32,29 @@ namespace CellAutomata {
                     }
 
                     if (currentCell.isAlive && livingNeighbors < 2) {
-                        currentCell.isAlive = false;
-                        currentCell.shape.FillColor = Color.Black;
+                        currentCell.nextAliveState = false;
                     } else if (currentCell.isAlive && livingNeighbors == 2 || livingNeighbors == 3) {
-                        // Cell survives
+                        currentCell.nextAliveState = true; // Cell survives
                     } else if (currentCell.isAlive && livingNeighbors > 3) {
-                        currentCell.isAlive = false;
-                        currentCell.shape.FillColor = Color.Black;
+                        currentCell.nextAliveState = false;
                     } else if (!currentCell.isAlive && livingNeighbors == 3) {
-                        currentCell.isAlive = true;
+                        currentCell.nextAliveState = true;
+                    }
+                }
+            }
+
+            // After deciding fate of each cell, life states are changed
+            for (int y = 0; y < GRID_SIZE; y++) {
+                for (int x = 0; x < GRID_SIZE; x++) {
+                    Cell currentCell = cellArr[y, x];
+
+                    currentCell.isAlive = currentCell.nextAliveState;
+
+                    // Changes cell colors to reflect life state, TODO: make seperate function and possibly into seperate class. 
+                    if (currentCell.isAlive) {
                         currentCell.shape.FillColor = Color.White;
+                    } else {
+                        currentCell.shape.FillColor = Color.Black;
                     }
                 }
             }
