@@ -1,7 +1,7 @@
 using SFML.Graphics;
 
 namespace CellAutomata {
-    class TestGame {
+    class Conway {
         /*
             RULES:
                 If alive and less than two alive neighbors, die
@@ -10,14 +10,14 @@ namespace CellAutomata {
                 If dead and exactly three alive neighbors, become alive
         */
 
-        public void changeCellStates(Cell[,] cellArr, int GRID_SIZE) {
+        public void changeCellStates(Cell[,] cellArr, int gridSize) {
             /*
                 Look at each cell on the grid, and record how many dead neighbors it has
                 and how many dead ones it has
                 then change the life state of current cell according to rules above
             */
-            for (int y = 0; y < GRID_SIZE; y++) {
-                for (int x = 0; x < GRID_SIZE; x++) {
+            for (int y = 0; y < gridSize; y++) {
+                for (int x = 0; x < gridSize; x++) {
                     Cell currentCell = cellArr[y, x];
 
                     int livingNeighbors = 0;
@@ -44,8 +44,8 @@ namespace CellAutomata {
             }
 
             // After deciding fate of each cell, life states are changed
-            for (int y = 0; y < GRID_SIZE; y++) {
-                for (int x = 0; x < GRID_SIZE; x++) {
+            for (int y = 0; y < gridSize; y++) {
+                for (int x = 0; x < gridSize; x++) {
                     Cell currentCell = cellArr[y, x];
 
                     currentCell.isAlive = currentCell.nextAliveState;

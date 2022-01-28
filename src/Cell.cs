@@ -5,8 +5,8 @@ namespace CellAutomata {
     public class Cell {
         public RectangleShape shape;
         public List<Cell> neighbors;
-        Vector2f pos;
-        Vector2f size;
+        public Vector2f pos;
+        public Vector2f size;
         public bool isAlive;
         public bool nextAliveState; 
 
@@ -16,7 +16,7 @@ namespace CellAutomata {
             this.isAlive = isAlive;
 
             neighbors = new List<Cell>();
-
+            
             shape = new RectangleShape(size);
             shape.Position = position;
 
@@ -25,6 +25,10 @@ namespace CellAutomata {
             } else {
                 shape.FillColor = Color.Black;
             }
+        }
+
+        public void draw(RenderWindow window) {
+            if (isAlive) {window.Draw(shape);}
         }
     }
 }
